@@ -38,5 +38,11 @@ pipeline {
                 sh "docker push nbaez001/api-product:latest"
             }
         }
+        
+        stage('Docker run') {
+            steps {
+                sh "docker run --rm -it -p 8091:8091 --name=api-product nbaez001/api-product:latest"
+            }
+        }
     }
 }
