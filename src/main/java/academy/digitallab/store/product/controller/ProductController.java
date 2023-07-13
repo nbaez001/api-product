@@ -4,6 +4,8 @@ import academy.digitallab.store.product.config.ErrorMessage;
 import academy.digitallab.store.product.entity.Category;
 import academy.digitallab.store.product.entity.Product;
 import academy.digitallab.store.product.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/products")
+@Slf4j
 public class ProductController {
 
     @Autowired
@@ -106,7 +109,7 @@ public class ProductController {
         try {
             jsonString = mapper.writeValueAsString(errorMessage);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+        	log.info(e.getMessage());
         }
         return jsonString;
     }
